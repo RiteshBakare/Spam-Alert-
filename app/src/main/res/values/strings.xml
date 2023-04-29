@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Spam Alert</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="this_is_the_splash_screen">this is the splash screen</string>
+    <string name="phone_functioanility_coming_soon">Phone Functionility Comming Soon !</string>
+    <string name="check_spam_message">Check Spam Message</string>
+</resources>

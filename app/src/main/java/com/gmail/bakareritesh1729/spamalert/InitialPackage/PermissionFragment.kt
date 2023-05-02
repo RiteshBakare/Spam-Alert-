@@ -33,13 +33,17 @@ class PermissionFragment : Fragment() {
                     permission[android.Manifest.permission.READ_SMS] ?: isReadSMSPermissionGranted
                 isReceiveSMSPermissionGranted = permission[android.Manifest.permission.RECEIVE_SMS]
                     ?: isReceiveSMSPermissionGranted
+
+                if (isReadSMSPermissionGranted && isReceiveSMSPermissionGranted) {
+                    startActivity(Intent(context, HomeScreen::class.java))
+                }
+
             }
 
         getUserPermissions()
 
 
 
-        startActivity(Intent(context,HomeScreen::class.java))
 
         return inflater.inflate(R.layout.fragment_permission, container, false)
     }

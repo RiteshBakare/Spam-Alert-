@@ -18,7 +18,6 @@ class HomeScreen : AppCompatActivity() {
     private lateinit var adapter: FragmentPageAdapter
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeScreenBinding.inflate(layoutInflater)
@@ -58,7 +57,6 @@ class HomeScreen : AppCompatActivity() {
         })
 
     }
-
 
 
 }

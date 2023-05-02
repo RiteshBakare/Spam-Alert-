@@ -1,13 +1,9 @@
 package com.gmail.bakareritesh1729.spamalert
 
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.gmail.bakareritesh1729.spamalert.TabLayout.FragmentPageAdapter
+import com.gmail.bakareritesh1729.spamalert.Adapter.FragmentPageAdapter
 import com.gmail.bakareritesh1729.spamalert.databinding.ActivityHomeScreenBinding
 import com.google.android.material.tabs.TabLayout
 

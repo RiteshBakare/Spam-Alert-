@@ -1,6 +1,5 @@
 package com.gmail.bakareritesh1729.spamalert.TabLayout
 
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.Telephony
 import android.util.Log
@@ -9,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.gmail.bakareritesh1729.spamalert.TabLayout.Message.MessageAdapter
+import com.gmail.bakareritesh1729.spamalert.Model.UserData
+import com.gmail.bakareritesh1729.spamalert.Adapter.MessageAdapter
 import com.gmail.bakareritesh1729.spamalert.databinding.FragmentMessageBinding
 
 

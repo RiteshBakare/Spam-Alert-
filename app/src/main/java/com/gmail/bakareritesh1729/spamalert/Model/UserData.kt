@@ -1,4 +1,4 @@
-package com.gmail.bakareritesh1729.spamalert.TabLayout
+package com.gmail.bakareritesh1729.spamalert.Model
 
 data class UserData(
     val id : Long?,

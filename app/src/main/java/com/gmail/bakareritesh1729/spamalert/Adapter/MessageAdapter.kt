@@ -1,10 +1,9 @@
-package com.gmail.bakareritesh1729.spamalert.TabLayout.Message
+package com.gmail.bakareritesh1729.spamalert.Adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.bakareritesh1729.spamalert.TabLayout.UserData
+import com.gmail.bakareritesh1729.spamalert.Model.UserData
 import com.gmail.bakareritesh1729.spamalert.databinding.ItemEachMessageBinding
 
 class MessageAdapter(private val dataList: ArrayList<UserData>) : RecyclerView.Adapter<MessageAdapter.ViewHolder>() {

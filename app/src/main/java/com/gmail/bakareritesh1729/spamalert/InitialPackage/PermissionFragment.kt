@@ -42,7 +42,9 @@ class PermissionFragment : Fragment() {
 
         getUserPermissions()
 
-
+        if (isReadSMSPermissionGranted && isReceiveSMSPermissionGranted) {
+            startActivity(Intent(context, HomeScreen::class.java))
+        }
 
 
         return inflater.inflate(R.layout.fragment_permission, container, false)

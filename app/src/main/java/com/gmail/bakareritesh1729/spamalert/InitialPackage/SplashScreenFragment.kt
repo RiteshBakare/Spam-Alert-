@@ -26,6 +26,7 @@ class SplashScreenFragment : Fragment() {
 
         splashScreenBinding = FragmentSplashScreenBinding.inflate(inflater, container, false)
 
+        splashScreenBinding.LogoAnimation.playAnimation()
 
         val handle = Handler(Looper.getMainLooper()).postDelayed({
             val fragmentManager = requireActivity().supportFragmentManager
@@ -33,7 +34,7 @@ class SplashScreenFragment : Fragment() {
             fragmentTransaction.replace(R.id.FrameLayout, PermissionFragment())
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
-        }, 1500)
+        }, 2500)
 
 
         return splashScreenBinding.root

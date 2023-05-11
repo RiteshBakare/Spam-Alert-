@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.gmail.bakareritesh1729.spamalert.Constants.progressBarDialog
 import com.gmail.bakareritesh1729.spamalert.Constants.setRegularSMSList
 import com.gmail.bakareritesh1729.spamalert.Constants.setSpamSMSList
+import com.gmail.bakareritesh1729.spamalert.Model.UserData
 import com.gmail.bakareritesh1729.spamalert.databinding.ActivityCheckSpamBinding
 import com.gmail.bakareritesh1729.spamalert.helpers.TextClassificationClient
 import kotlinx.coroutines.*
@@ -19,10 +20,10 @@ class CheckSpamActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCheckSpamBinding
 
-    private var smsList: ArrayList<String>? = ArrayList()
+    private var smsList: ArrayList<UserData>? = ArrayList()
 
-    private var spamSMSList: ArrayList<String> = ArrayList()
-    private var regularSMSList: ArrayList<String> = ArrayList()
+    private var spamSMSList: ArrayList<UserData> = ArrayList()
+    private var regularSMSList: ArrayList<UserData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,14 +49,14 @@ class CheckSpamActivity : AppCompatActivity() {
 
             while (counter < smsList!!.size) {
 
-                val toSend: String = smsList!![counter]
+                val toSend: String = smsList!![counter].body!!
                 val result: List<Category> = client.classify(toSend)
                 val score = result[1].score
 
-                if (score > 0.8) {
-                    spamSMSList.add(toSend)
+                if (score > 0.8999) {
+                    spamSMSList.add(smsList!![counter])
                 } else {
-                    regularSMSList.add(toSend)
+                    regularSMSList.add(smsList!![counter])
                 }
                 counter++
             }

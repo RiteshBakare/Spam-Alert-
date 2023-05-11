@@ -14,6 +14,7 @@ import com.gmail.bakareritesh1729.spamalert.Model.UserData
 import com.gmail.bakareritesh1729.spamalert.Adapter.MessageAdapter
 import com.gmail.bakareritesh1729.spamalert.CheckSpamActivity
 import com.gmail.bakareritesh1729.spamalert.Constants
+import com.gmail.bakareritesh1729.spamalert.R
 import com.gmail.bakareritesh1729.spamalert.databinding.FragmentMessageBinding
 
 
@@ -21,7 +22,7 @@ class MessageFragment : Fragment() {
 
     private lateinit var messageBinding: FragmentMessageBinding
 
-    private lateinit var userSMSList: ArrayList<UserData>
+    private  var userSMSList: ArrayList<UserData> = ArrayList()
 
 
     private var smsList : ArrayList<String> = ArrayList()
@@ -37,7 +38,7 @@ class MessageFragment : Fragment() {
         addDataToRecyclerView()
 
         messageBinding.btnCheckSpam.setOnClickListener {
-            Constants.setUserSMS(smsList)
+            Constants.setUserSMS(userSMSList)
             startActivity(Intent(requireActivity(), CheckSpamActivity::class.java))
         }
 
@@ -69,7 +70,6 @@ class MessageFragment : Fragment() {
         )
 
 
-        userSMSList = ArrayList()
 
         if (cursor != null) {
             while (cursor.moveToNext()) {
@@ -91,7 +91,7 @@ class MessageFragment : Fragment() {
 
     private fun addDataToRecyclerView() {
         if (userSMSList.isNotEmpty()) {
-            val adapter = MessageAdapter(userSMSList)
+            val adapter = MessageAdapter(userSMSList, R.color.light_blue)
             messageBinding.recyclerView.layoutManager =
                 LinearLayoutManager(requireContext().applicationContext)
             messageBinding.recyclerView.adapter = adapter

@@ -1,5 +1,6 @@
 package com.gmail.bakareritesh1729.spamalert.TabLayout
 
+import android.content.Intent
 import android.os.Bundle
 import android.provider.Telephony
 import android.util.Log
@@ -11,6 +12,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.bakareritesh1729.spamalert.Model.UserData
 import com.gmail.bakareritesh1729.spamalert.Adapter.MessageAdapter
+import com.gmail.bakareritesh1729.spamalert.CheckSpamActivity
+import com.gmail.bakareritesh1729.spamalert.Constants
+import com.gmail.bakareritesh1729.spamalert.R
 import com.gmail.bakareritesh1729.spamalert.databinding.FragmentMessageBinding
 
 
@@ -18,7 +22,10 @@ class MessageFragment : Fragment() {
 
     private lateinit var messageBinding: FragmentMessageBinding
 
-    private lateinit var userSMSList : ArrayList<UserData>
+    private  var userSMSList: ArrayList<UserData> = ArrayList()
+
+
+    private var smsList : ArrayList<String> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +38,8 @@ class MessageFragment : Fragment() {
         addDataToRecyclerView()
 
         messageBinding.btnCheckSpam.setOnClickListener {
-            Toast.makeText(context,"ML Model to be added Soon !!! ",Toast.LENGTH_LONG).show()
+            Constants.setUserSMS(userSMSList)
+            startActivity(Intent(requireActivity(), CheckSpamActivity::class.java))
         }
 
         return messageBinding.root
@@ -62,7 +70,6 @@ class MessageFragment : Fragment() {
         )
 
 
-        userSMSList = ArrayList()
 
         if (cursor != null) {
             while (cursor.moveToNext()) {
@@ -71,26 +78,10 @@ class MessageFragment : Fragment() {
                 val date = cursor.getLong(cursor.getColumnIndexOrThrow(Telephony.Sms.DATE))
                 val body = cursor.getString(cursor.getColumnIndexOrThrow(Telephony.Sms.BODY))
 
-                userSMSList.add(UserData(id,address,date,body))
+                userSMSList.add(UserData(id, address, date, body))
+
+                smsList.add(body.toString())
             }
-        }
-
-        if(userSMSList.isNotEmpty()) {
-            Log.e("User SMS","id: ${userSMSList[0].id} \n")
-            Log.e("User SMS","adders: ${userSMSList[0].address} \n")
-            Log.e("User SMS","date: ${userSMSList[0].date} \n ")
-            Log.e("User SMS","body: ${userSMSList[0].body} \n")
-
-            Log.e("User SMS","id: ${userSMSList[1].id} \n")
-            Log.e("User SMS","adders: ${userSMSList[1].address} \n")
-            Log.e("User SMS","date: ${userSMSList[1].date} \n ")
-            Log.e("User SMS","body: ${userSMSList[1].body} \n")
-
-            Log.e("User SMS","id: ${userSMSList[2].id} \n")
-            Log.e("User SMS","adders: ${userSMSList[2].address} \n")
-            Log.e("User SMS","date: ${userSMSList[2].date} \n ")
-            Log.e("User SMS","body: ${userSMSList[2].body} \n")
-
         }
 
 
@@ -99,9 +90,10 @@ class MessageFragment : Fragment() {
 
 
     private fun addDataToRecyclerView() {
-        if(userSMSList.isNotEmpty()) {
-            val adapter = MessageAdapter(userSMSList)
-            messageBinding.recyclerView.layoutManager = LinearLayoutManager(requireContext().applicationContext)
+        if (userSMSList.isNotEmpty()) {
+            val adapter = MessageAdapter(userSMSList, R.color.light_blue)
+            messageBinding.recyclerView.layoutManager =
+                LinearLayoutManager(requireContext().applicationContext)
             messageBinding.recyclerView.adapter = adapter
         }
     }

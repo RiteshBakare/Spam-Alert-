@@ -22,7 +22,7 @@ class SpamSMSResultActivity : AppCompatActivity() {
         binding = ActivitySpamSmsresultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val spamSMSList = Constants.getSpamSMSList()
+
         val regularSMSList = Constants.getRegularSMSList()
 
         adapter = FragmentSMSResultAdapter(supportFragmentManager, lifecycle)

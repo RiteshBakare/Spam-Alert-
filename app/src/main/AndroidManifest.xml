@@ -15,6 +15,12 @@
         android:theme="@style/Theme.SpamAlert"
         tools:targetApi="31">
         <activity
+            android:name=".SpamSMSResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CheckSpamActivity"
+            android:exported="false" />
+        <activity
             android:name=".HomeScreen"
             android:exported="false" />
         <activity

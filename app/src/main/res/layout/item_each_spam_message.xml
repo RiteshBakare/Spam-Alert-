@@ -51,7 +51,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivImage"
             app:layout_constraintTop_toBottomOf="@id/tvAddress"
-            tools:text="This is sample message to be deleted hello this is spam app to delete message  " />
+            tools:text="This is sample message to be deleted hello this is spam app to delete message  "
+            tools:ignore="NotSibling"
+            android:maxLines="3"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

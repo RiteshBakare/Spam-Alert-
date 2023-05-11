@@ -4,11 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
-import com.gmail.bakareritesh1729.spamalert.Constants.progressBarDialog
-import com.gmail.bakareritesh1729.spamalert.Constants.setRegularSMSList
-import com.gmail.bakareritesh1729.spamalert.Constants.setSpamSMSList
+import com.gmail.bakareritesh1729.spamalert.Model.Constants
+import com.gmail.bakareritesh1729.spamalert.Model.Constants.progressBarDialog
+import com.gmail.bakareritesh1729.spamalert.Model.Constants.setRegularSMSList
+import com.gmail.bakareritesh1729.spamalert.Model.Constants.setSpamSMSList
 import com.gmail.bakareritesh1729.spamalert.Model.UserData
 import com.gmail.bakareritesh1729.spamalert.databinding.ActivityCheckSpamBinding
 import com.gmail.bakareritesh1729.spamalert.helpers.TextClassificationClient
@@ -72,6 +71,7 @@ class CheckSpamActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     progressBar.dismiss()
                     startActivity(Intent(this@CheckSpamActivity, SpamSMSResultActivity::class.java))
+                    finish()
                 }
             }
 

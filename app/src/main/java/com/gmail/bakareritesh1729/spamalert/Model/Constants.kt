@@ -1,8 +1,8 @@
-package com.gmail.bakareritesh1729.spamalert
+package com.gmail.bakareritesh1729.spamalert.Model
 
 import android.app.Dialog
 import android.content.Context
-import com.gmail.bakareritesh1729.spamalert.Model.UserData
+import com.gmail.bakareritesh1729.spamalert.R
 
 object Constants {
 
@@ -13,7 +13,7 @@ object Constants {
     private var regularSMSList : ArrayList<UserData> = ArrayList()
 
     fun setUserSMS(smsList: ArrayList<UserData>) {
-        this.smsList = smsList
+        Constants.smsList = smsList
     }
     fun getUserSMS(): ArrayList<UserData>? {
         return smsList.ifEmpty {
@@ -22,7 +22,7 @@ object Constants {
     }
 
     fun setSpamSMSList(spamSMSList: ArrayList<UserData>) {
-        this.spamSMSList = spamSMSList
+        Constants.spamSMSList = spamSMSList
     }
     fun getSpamSMSList(): ArrayList<UserData>? {
         return spamSMSList.ifEmpty {
@@ -31,7 +31,7 @@ object Constants {
     }
 
     fun setRegularSMSList(regularSMSList: ArrayList<UserData>) {
-        this.regularSMSList = regularSMSList
+        Constants.regularSMSList = regularSMSList
     }
     fun getRegularSMSList(): ArrayList<UserData>? {
         return regularSMSList.ifEmpty {

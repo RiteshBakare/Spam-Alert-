@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmail.bakareritesh1729.spamalert.Adapter.MessageAdapter
-import com.gmail.bakareritesh1729.spamalert.Constants
+import com.gmail.bakareritesh1729.spamalert.Model.Constants
 import com.gmail.bakareritesh1729.spamalert.Model.UserData
 import com.gmail.bakareritesh1729.spamalert.R
 import com.gmail.bakareritesh1729.spamalert.databinding.FragmentRegularSMSBinding

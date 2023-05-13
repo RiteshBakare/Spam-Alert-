@@ -12,6 +12,8 @@ object Constants {
 
     private var regularSMSList : ArrayList<UserData> = ArrayList()
 
+    private var bankSMSList : ArrayList<UserData> = ArrayList()
+
     fun setUserSMS(smsList: ArrayList<UserData>) {
         Constants.smsList = smsList
     }
@@ -36,6 +38,15 @@ object Constants {
     fun getRegularSMSList(): ArrayList<UserData>? {
         return regularSMSList.ifEmpty {
             return null
+        }
+    }
+
+    fun setBankSMSList(bankSMSList: ArrayList<UserData>) {
+        Constants.bankSMSList = bankSMSList
+    }
+    fun getBankSMSList(): ArrayList<UserData>? {
+        return bankSMSList.ifEmpty {
+            null
         }
     }
 

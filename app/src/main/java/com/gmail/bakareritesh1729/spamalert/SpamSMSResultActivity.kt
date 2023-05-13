@@ -2,8 +2,10 @@ package com.gmail.bakareritesh1729.spamalert
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.viewpager2.widget.ViewPager2
 import com.gmail.bakareritesh1729.spamalert.Adapter.FragmentSMSResultAdapter
+import com.gmail.bakareritesh1729.spamalert.Adapter.FragmentSpamMessageAdapter
 import com.gmail.bakareritesh1729.spamalert.Model.Constants
 import com.gmail.bakareritesh1729.spamalert.databinding.ActivitySpamSmsresultBinding
 import com.google.android.material.tabs.TabLayout
@@ -12,7 +14,7 @@ class SpamSMSResultActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySpamSmsresultBinding
 
-    private lateinit var adapter : FragmentSMSResultAdapter
+    private lateinit var adapter : FragmentSpamMessageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +25,14 @@ class SpamSMSResultActivity : AppCompatActivity() {
 
         val regularSMSList = Constants.getRegularSMSList()
 
-        adapter = FragmentSMSResultAdapter(supportFragmentManager, lifecycle)
+        val bankSMSList = Constants.getBankSMSList()
+        Log.e("bankMessage","the list is $bankSMSList ")
+
+        adapter = FragmentSpamMessageAdapter(supportFragmentManager, lifecycle)
 
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Spam Message"))
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Regular Message"))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Bank Message"))
 
         binding.viewPager2.adapter = adapter
 

@@ -23,6 +23,7 @@ class CheckSpamActivity : AppCompatActivity() {
 
     private var spamSMSList: ArrayList<UserData> = ArrayList()
     private var regularSMSList: ArrayList<UserData> = ArrayList()
+    private var bankSMSList: ArrayList<UserData> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,13 @@ class CheckSpamActivity : AppCompatActivity() {
 
             while (counter < smsList!!.size) {
 
+                if (checkForBank(smsList!![counter].address.toString()) == true) {
+                    bankSMSList.add(smsList!![counter])
+                    Log.e("bankMessage","the bank SMS is ${smsList!![counter].address.toString()}")
+                    counter++
+                    continue
+                }
+
                 val toSend: String = smsList!![counter].body!!
                 val result: List<Category> = client.classify(toSend)
                 val score = result[1].score
@@ -67,9 +75,14 @@ class CheckSpamActivity : AppCompatActivity() {
 
                 setSpamSMSList(spamSMSList)
                 setRegularSMSList(regularSMSList)
+                if (bankSMSList.isNotEmpty()) {
+                    Constants.setBankSMSList(bankSMSList)
+//                    Log.e("bankMessage", "bank SMS list is Not Empty ")
+                }
 
                 withContext(Dispatchers.Main) {
                     progressBar.dismiss()
+//                    Log.e("bankMessage", "list is $bankSMSList ")
                     startActivity(Intent(this@CheckSpamActivity, SpamSMSResultActivity::class.java))
                     finish()
                 }
@@ -81,5 +94,17 @@ class CheckSpamActivity : AppCompatActivity() {
 
     }
 
+    private fun checkForBank(text: String): Boolean {
+        if (text.contains("BT-INDBNK") or text.contains("BW-SBIUPI")) {
+            return true
+        }
+        if (text.contains("JD-BOIIND") or text.contains("VM-BOIIND")
+            or text.contains("AX-BOIIND") or text.contains("JD-IOBCHN") or text.contains("AX-IPBMSG")
+            or text.contains("VM-UNIONB") or text.contains("JD-AxisBk") or text.contains("JM-FCHDFC")
+        ) {
+            return true
+        }
+        return false
+    }
 
 }
